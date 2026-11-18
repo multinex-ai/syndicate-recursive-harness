@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+CODEX_BIN="$ROOT/shared/runtime/bin/codex"
+CODEX_HOME="$ROOT/shared/chat/home"
+LOG="$ROOT/shared/runtime/agents-chat-adapter.log"
+WORKSPACE="${SYNDICATE_WORKSPACE:-$PWD}"
+if [[ ! -x "$CODEX_BIN" || ! -f "$CODEX_HOME/config.toml" ]]; then
+  echo "agents-chat is not installed. Run ./install.sh --models core" >&2
+  exit 1
+fi
+PORT="${SYNDICATE_ADAPTER_PORT:-}"
+if [[ -z "$PORT" ]]; then
+  for candidate in $(seq 18087 18097); do
+    if ! /usr/sbin/lsof -nP -iTCP:"$candidate" -sTCP:LISTEN >/dev/null 2>&1; then
+      PORT="$candidate"
+      break
+    fi
+  done
+fi
+if [[ -z "$PORT" ]] || /usr/sbin/lsof -nP -iTCP:"$PORT" -sTCP:LISTEN >/dev/null 2>&1; then
+  echo "No free loopback port in 18087..18097 (or SYNDICATE_ADAPTER_PORT=$PORT is busy)." >&2
+  exit 1
+fi
+LOG="$ROOT/shared/runtime/agents-chat-adapter-${PORT}.log"
+cleanup() {
+  if [[ -n "${ADAPTER_PID:-}" ]]; then
+    kill -TERM "$ADAPTER_PID" 2>/dev/null || true
+    wait "$ADAPTER_PID" 2>/dev/null || true
+  fi
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+export LOCAL_AGENTS_ROOT="${LOCAL_AGENTS_ROOT:-$ROOT}"
+export LOCAL_AGENTS_LOW_MEMORY=1
+export LOCAL_AGENTS_TOLERATE_WARNING_GIB="${LOCAL_AGENTS_TOLERATE_WARNING_GIB:-2.0}"
+export LOCAL_AGENTS_CONTEXT_SIZE="${SYNDICATE_CONTEXT_WINDOW:-16384}"
+export LOCAL_AGENTS_MAX_SWAP_GROWTH_GIB="${LOCAL_AGENTS_MAX_SWAP_GROWTH_GIB:-3.0}"
+MNX_ADAPTER_PORT="$PORT" MNX_MANAGED_INFERENCE=1 node "$ROOT/shared/chat/local-responses-adapter.mjs" >"$LOG" 2>&1 &
+ADAPTER_PID=$!
+for _ in $(seq 1 50); do
+  kill -0 "$ADAPTER_PID" 2>/dev/null || { tail -80 "$LOG" >&2; exit 1; }
+  if curl --silent --fail "http://127.0.0.1:${PORT}/health" >/dev/null; then break; fi
+  sleep .1
+done
+curl --silent --fail "http://127.0.0.1:${PORT}/health" >/dev/null
+echo "Local Syndicate Harness² • Qwen loads per reply and unloads before worker dispatch (adapter :${PORT})"
+echo "Context: ${LOCAL_AGENTS_CONTEXT_SIZE} tokens • compact: ${SYNDICATE_COMPACT_AT:-10800} • hard stop: ${SYNDICATE_HARD_STOP:-14300}"
+env CODEX_HOME="$CODEX_HOME" "$CODEX_BIN" --model local-agent -c 'model_provider="local_syndicate"' -c "model_providers.local_syndicate.base_url=\"http://127.0.0.1:${PORT}/v1\"" -C "$WORKSPACE" "$@"
+

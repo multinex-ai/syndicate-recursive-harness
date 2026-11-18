@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "agent_id": "browser",
+  "syndicate_id": "core-local-agents",
+  "mcp_servers": [
+    {
+      "server_id": "local_agent_workers",
+      "enabled": false,
+      "transport": "stdio",
+      "command_or_url": "shared/bin/run-mcp.sh",
+      "args": [],
+      "env_keys": [],
+      "allowed_tools": ["local_agents_status", "start_local_agent", "local_agent_job", "cancel_local_agent", "local_agent_log"],
+      "description": "Local Agent Workers & Syndicate Delegation Bridge"
+    },
+    {
+      "server_id": "chrome_devtools",
+      "enabled": true,
+      "transport": "stdio",
+      "command_or_url": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"],
+      "env_keys": [],
+      "allowed_tools": ["navigate_page", "take_snapshot", "take_screenshot"],
+      "description": "Headless Chrome DevTools MCP for allowlisted OSINT & page inspection"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+Local Syndicate Harness Squared
+Copyright 2026 Multinex AI Company
+
+This distribution is licensed under the Apache License, Version 2.0.
+
+The optional `agents-chat` installer downloads an unmodified OpenAI Codex CLI
+release, which is also licensed under the Apache License, Version 2.0:
+https://github.com/openai/codex
+
+Model weights are not covered by this repository's Apache-2.0 license. Each
+weight file is downloaded from its named source at a pinned revision and keeps
+its source license, attribution, access conditions, and acceptable-use terms.
+See `catalog/models/manifest.json` before downloading or redistributing weights.
+
+Multinex, Local Syndicate Harness, and their marks are not granted for third-
+party endorsement by the Apache-2.0 license.
+
+The optional Wan MLX adapter vendors code from the MIT-licensed
+`ml-explore/mlx-examples` repository, `video/wan2.1`, at commit
+`796f5b53cab69a3d48a44233ce21aae889e94a08`. Its upstream MIT license is
+preserved at `shared/vendor/mlx-wan/LICENSE`; provenance and comparison scope
+are recorded in `catalog/vendor/mlx-wan.json`.
+

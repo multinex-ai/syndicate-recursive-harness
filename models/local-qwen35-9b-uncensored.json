@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "profile_id": "local-qwen35-9b-uncensored",
+  "provider_kind": "local_gguf",
+  "model_ref": "shared/models/qwen35-9b-uncensored/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf",
+  "mmproj_ref": "shared/models/qwen35-9b-uncensored/mmproj-Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-BF16.gguf",
+  "endpoint": "http://127.0.0.1:8087/v1/chat/completions",
+  "context_window": 16384,
+  "compact_at_tokens": 10800,
+  "hard_stop_tokens": 14300,
+  "reserved_output_tokens": 2048,
+  "kv_cache_quant": "q8_0",
+  "requires_heavy_lock": true,
+  "estimated_ram_mb": 7400,
+  "max_output_tokens": 1600
+}

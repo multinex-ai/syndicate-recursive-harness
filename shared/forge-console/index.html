@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" data-brand="emerald">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Local Syndicate Forge² — Loopback Control Console</title>
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.json">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg-canvas: light-dark(#F7F8FA, #05070B);
+      --bg-card: light-dark(#FFFFFF, #0D1117);
+      --bg-interactive: light-dark(#F1F5F9, #151C25);
+      --text-1: light-dark(#0F172A, #E8EEF2);
+      --text-2: light-dark(#475569, #94A3B8);
+      --border: light-dark(#E2E8F0, #1E293B);
+      --brand: light-dark(#059669, #10B981);
+      --amber: light-dark(#D97706, #FFC857);
+      --danger: light-dark(#DC2626, #F87171);
+    }
+    html[data-theme="dark"] { color-scheme: dark; }
+    html[data-theme="light"] { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg-canvas);
+      color: var(--text-1);
+      line-height: 1.5;
+    }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.1rem; }
+    .brand img { width: 32px; height: 32px; }
+    .controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    input, select, textarea, button {
+      font: inherit;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-interactive);
+      color: var(--text-1);
+    }
+    button { cursor: pointer; font-weight: 600; }
+    button.primary { background: var(--brand); color: #fff; border-color: transparent; }
+    button.danger { background: var(--danger); color: #fff; border-color: transparent; }
+    main { max-width: 1200px; margin: 0 auto; padding: 24px; display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 12px; }
+    .card.wide { grid-column: 1 / -1; }
+    h2 { margin: 0; font-size: 1rem; display: flex; align-items: center; justify-content: space-between; }
+    .badge { font-size: 0.75rem; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-2); }
+    .badge.ok { color: var(--brand); border-color: var(--brand); }
+    .badge.warn { color: var(--amber); border-color: var(--amber); }
+    pre { margin: 0; padding: 12px; border-radius: 8px; background: var(--bg-interactive); overflow-x: auto; font-size: 0.82rem; max-height: 280px; }
+    .kv { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+    .kv div { padding: 10px; border-radius: 8px; background: var(--bg-interactive); }
+    .kv span { display: block; font-size: 0.75rem; color: var(--text-2); }
+    .kv b { font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="/icon.svg" alt="Forge icon">
+      <span>Local Syndicate Forge²</span>
+      <span id="healthBadge" class="badge">checking...</span>
+    </div>
+    <div class="controls">
+      <input id="tokenInput" type="password" placeholder="Loopback Bearer Token" aria-label="Bearer Token" style="width:210px">
+      <button id="refreshBtn" type="button">Refresh</button>
+      <button id="themeBtn" type="button">Theme: System</button>
+    </div>
+  </header>
+  <main>
+    <section class="card">
+      <h2>Machine & Heavy-Model Lock <span id="lockBadge" class="badge">—</span></h2>
+      <div class="kv">
+        <div><span>Available RAM</span><b id="memAvail">—</b></div>
+        <div><span>Pressure</span><b id="memPressure">—</b></div>
+        <div><span>Admission</span><b id="admissionVerdict">—</b></div>
+      </div>
+      <pre id="machineRaw">Connect with the loopback token printed by `local-agents-rs forge`.</pre>
+    </section>
+
+    <section class="card">
+      <h2>Launch Bounded Mission <span id="missionBadge" class="badge">idle</span></h2>
+      <label>Role
+        <select id="roleSelect" style="width:100%;margin-top:4px">
+          <option value="conductor">conductor (Creative Relay)</option>
+          <option value="coordinator">coordinator</option>
+          <option value="code-builder">code-builder</option>
+          <option value="verifier">verifier</option>
+        </select>
+      </label>
+      <label>Objective
+        <textarea id="objectiveInput" rows="3" style="width:100%;margin-top:4px" placeholder="Inspect workspace and summarize verified test commands."></textarea>
+      </label>
+      <div style="display:flex;gap:8px">
+        <button id="launchBtn" class="primary" type="button">Dispatch Mission</button>
+        <button id="stopBtn" class="danger" type="button" disabled>Stop</button>
+      </div>
+      <pre id="missionOutput">No mission started in this session.</pre>
+    </section>
+
+    <section class="card wide">
+      <h2>Syndicate Roster & Telemetry Summary <span id="rosterCount" class="badge">0 roles</span></h2>
+      <pre id="rosterOutput">Loading roster and telemetry summary...</pre>
+    </section>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>

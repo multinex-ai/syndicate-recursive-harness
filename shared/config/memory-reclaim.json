@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "target_available_gib": 4,
+  "apps": [
+    "ChatGPT"
+  ],
+  "auto_largest": false,
+  "min_app_mb": 200,
+  "never": [
+    "Antigravity"
+  ],
+  "quit_timeout_seconds": 20,
+  "restore_after": true,
+  "note": "Runs only when available RAM is below the target, before a heavy model load. Tries only the apps named here; it does not sweep through the largest apps (set auto_largest to true to allow that). Asks you in a dialog before it closes anything (quit, skip, skip all for 10 minutes, sleep 2 hours, or turn off; no answer in 90 seconds means skip), then sends a normal Quit (save prompts still appear), never force-kills, and reopens the apps in the background after the model unloads. Claude, Codex, terminals, Finder and the security/IT apps are always protected.",
+  "confirm": true
+}

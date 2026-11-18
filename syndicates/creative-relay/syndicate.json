@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "syndicate_id": "local-syndicate-creative-relay-v1",
+  "display_name": "Creative Relay",
+  "creator_attribution": "Christopher Rijos / Multinex AI",
+  "mission": "Turn one plain-language request into verified code, images, scenes, or video by routing each stage to the smallest suitable local worker.",
+  "purpose": "Give a new user one safe entry point while keeping model loading, tool permissions, retries, and completion evidence bounded.",
+  "lore": "The relay is a small workshop. The conductor writes the work order, builders produce one artifact at a time, and the verifier checks the receipt before the next handoff.",
+  "state": "release-candidate",
+  "officiation": { "enabled": true },
+  "coordinator_agent_id": "conductor",
+  "agent_ids": ["conductor", "code-builder", "verifier"],
+  "allowed_tools_ceiling": ["send_message", "list_workers", "receive_messages", "read_file", "write_file", "list_files", "run_command"],
+  "allowed_hosts_ceiling": ["localhost", "127.0.0.1", "::1"],
+  "max_dispatch_rounds": 6,
+  "edges": [
+    { "from": "conductor", "to": "code-builder", "relation": "commands", "condition": "the request needs source code or project files", "constraints": { "max_rounds": 2 } },
+    { "from": "conductor", "to": "image-studio", "relation": "commands", "condition": "the request needs an image or a scene keyframe", "constraints": { "max_rounds": 2 } },
+    { "from": "conductor", "to": "video-studio", "relation": "commands", "condition": "the request needs a short generated clip", "constraints": { "max_rounds": 2 } },
+    { "from": "conductor", "to": "verifier", "relation": "commands", "condition": "an artifact needs an independent evidence check", "constraints": { "max_rounds": 2 } },
+    { "from": "code-builder", "to": "image-studio", "relation": "feeds", "condition": "code work produces an approved visual prompt", "constraints": { "max_rounds": 1 } },
+    { "from": "code-builder", "to": "video-studio", "relation": "feeds", "condition": "code work produces an approved motion prompt", "constraints": { "max_rounds": 1 } },
+    { "from": "code-builder", "to": "verifier", "relation": "hands_off", "condition": "the requested code change and local tests are ready to inspect", "constraints": { "max_rounds": 2 } },
+    { "from": "verifier", "to": "conductor", "relation": "reports_to", "condition": "verification has a pass, failure, or concrete retry instruction", "constraints": { "max_rounds": 2 } }
+  ],
+  "loops": [
+    { "name": "build-check-recover", "path": ["conductor", "code-builder", "verifier", "conductor"], "max_iterations": 2, "exit_when": "the acceptance check passes or the bounded retry budget is exhausted" }
+  ]
+}
+

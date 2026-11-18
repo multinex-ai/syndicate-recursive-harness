@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "role": "video-studio",
+  "media_kind": "video",
+  "launcher": "shared/bin/run-video.sh",
+  "model_path": "shared/models/wan-uncensored",
+  "checkpoint": "wan_1.3B_exp_e14.safetensors",
+  "width": 320,
+  "height": 192,
+  "frames": 33,
+  "fps": 16,
+  "steps": 24,
+  "seed": 729,
+  "guidance": 5,
+  "state": "locally_smoke_tested_candidate",
+  "qualification": {
+    "updated_utc": "2026-11-03T18:42:10.359Z",
+    "checks": [
+      {
+        "name": "video",
+        "passed": true,
+        "evidence": "agents/video-studio/outputs/local-smoke.evidence.json"
+      }
+    ],
+    "scope": "Bounded local fixtures; not general reliability or universal no-refusal evidence"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "state": "locally_smoke_tested_candidate",
+  "checked_date": "2026-11-03",
+  "candidates": [
+    {
+      "model": "blackshirt/NSFW_Wan_1.3b",
+      "revision": "6199ecb457af237b143ca9cc2fccec6dcfbe4c22",
+      "checkpoint": "wan_1.3B_exp_e14.safetensors",
+      "checkpoint_bytes": 2838077328,
+      "publisher_claim": "Uncensored; no built-in safety filters; short text-to-video clips",
+      "limitations": "Specialized adult-content training; publisher warns ordinary prompts may perform poorly. Local evidence covers only the small smoke-test clip, not production quality.",
+      "runtime": "Apple mlx-examples Wan2.1 revision 796f5b53cab69a3d48a44233ce21aae889e94a08, local loading adapter and Q8 UMT5",
+      "encoder": "PandacatAI/umt5-xxl-enc-mlx-q8@bffbdff244d3a91ac605640c7c72d695147b9901",
+      "local_test": "320×192, 33 frames, 24 steps, 16 fps; generation, decoding and sampled-frame review recorded in outputs/local-smoke.evidence.json"
+    },
+    {
+      "model": "ChrisColeTech/LTX-2.5-uncensored-v1.1-FP8",
+      "revision": "592aaa11f13a7e480169455aa885f58c42d89766",
+      "q4_transformer_bytes": 14179508672,
+      "q4_encoder_bytes": 7509634752,
+      "publisher_claim": "Uncensored text/image/audio-to-video build",
+      "decision": "Not recommended as the initial 18 GiB Mac candidate; substantial memory and runtime uncertainty; license listed unknown"
+    }
+  ],
+  "no_refusal_evidence": "Publisher claim; local tests verify generation, not universal no-refusal behavior",
+  "qualification": {
+    "updated_utc": "2026-11-03T18:42:10.359Z",
+    "checks": [
+      {
+        "name": "video",
+        "passed": true,
+        "evidence": "agents/video-studio/outputs/local-smoke.evidence.json"
+      }
+    ],
+    "scope": "Bounded local fixtures; not general reliability or universal no-refusal evidence"
+  },
+  "remaining": [],
+  "runtime": "pinned MLX Wan"
+}

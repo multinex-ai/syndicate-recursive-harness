@@ -1,0 +1,9 @@
+mflux==0.24.0
+huggingface-hub
+playwright
+jsonschema
+psutil
+pyobjc-framework-Quartz
+pyobjc-framework-ApplicationServices
+einops>=0.8.2
+mcp==1.30.0

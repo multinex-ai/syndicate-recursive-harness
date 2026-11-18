@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "role": "browser",
+  "workspace": "agents/browser/workspace",
+  "max_turns": 16,
+  "timeout_seconds": 600,
+  "vision": false,
+  "model": "HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive",
+  "state": "locally_smoke_tested_candidate",
+  "launcher": "shared/bin/run-agent.sh",
+  "browser_hosts_default": [
+    "localhost",
+    "127.0.0.1",
+    "::1"
+  ],
+  "qualification": {
+    "updated_utc": "2026-11-03T18:42:10.359Z",
+    "checks": [
+      {
+        "name": "browser",
+        "passed": true,
+        "evidence": "evidence/setup-20261102/browser-acceptance.json"
+      }
+    ],
+    "scope": "Bounded local fixtures; not general reliability or universal no-refusal evidence"
+  }
+}

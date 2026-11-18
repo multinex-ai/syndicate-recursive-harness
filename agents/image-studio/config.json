@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "role": "image-studio",
+  "media_kind": "image",
+  "launcher": "shared/bin/run-image.sh",
+  "model_path": "shared/models/image-uncensored/flux2-klein-4b-mflux-q4",
+  "width": 512,
+  "height": 512,
+  "seed": 729,
+  "steps": 4,
+  "guidance": 1,
+  "state": "blocked_unverified_encoder_assembly",
+  "qualification": {
+    "updated_utc": "2026-11-03T18:42:10.359Z",
+    "checks": [
+      {
+        "name": "image",
+        "passed": false,
+        "evidence": "agents/image-studio/outputs/local-smoke.evidence.json"
+      }
+    ],
+    "scope": "Historical fixture only. Public extraction is blocked until the gated encoder license and runtime assembly are verified."
+  }
+}

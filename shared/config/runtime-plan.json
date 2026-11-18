@@ -1,0 +1,42 @@
+{
+  "schema_version": 2,
+  "status": "installed_with_open_acceptance",
+  "machine": {
+    "chip": "Apple M3 Pro",
+    "unified_memory_gib": 18,
+    "gpu_cores": 14
+  },
+  "inference_endpoint": "http://127.0.0.1:8087",
+  "cloud_inference": false,
+  "max_heavy_workers_in_this_package": 1,
+  "text_context_initial": 16384,
+  "text_context_compact_at": 10800,
+  "text_context_hard_stop": 14300,
+  "text_context_output_reserve": 2048,
+  "communication": {
+    "transport": "local JSON inboxes plus bounded sequential dispatcher",
+    "dispatch_default": 3,
+    "dispatch_limit_max": 10,
+    "receipts": true,
+    "media_workers": [
+      "image-studio",
+      "video-studio"
+    ],
+    "external_accounts_connected": false,
+    "dispatch_scope": "Coordinator CLI and MCP requests default to three; other direct CLI roles default to zero."
+  },
+  "scheduler": "Package advisory flock serializes heavy workers; a parent releases its model before dispatching children. Other apps are outside this lock.",
+  "isolation": "Validated workspace paths and browser host routing; argv commands run under the user OS account, not an OS sandbox.",
+  "stop_control": "Turn/time limits, Ctrl-C/SIGTERM cleanup and owned process groups; measured acceptance is in lifecycle-acceptance.json.",
+  "launchers": {
+    "language": "shared/bin/run-agent.sh",
+    "image": "shared/bin/run-image.sh",
+    "video": "shared/bin/run-video.sh"
+  },
+  "updated_utc": "2026-11-12T00:00:00.000Z",
+  "qualification": {
+    "passed": 2,
+    "required": 5,
+    "regression": "source tests pass; live extracted-runtime, clean-install, and publication gates remain open"
+  }
+}

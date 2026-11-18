@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "profile_id": "cloudflare-qwen-orchestrator",
+  "provider_kind": "cloudflare_workers_ai",
+  "model_ref": "@cf/qwen/qwen2.5-coder-32b-instruct",
+  "mmproj_ref": null,
+  "endpoint": "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/v1/chat/completions",
+  "context_window": 32768,
+  "kv_cache_quant": "fp8_edge",
+  "requires_heavy_lock": false,
+  "estimated_ram_mb": 0,
+  "max_output_tokens": 2048
+}
