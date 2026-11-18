@@ -1,0 +1,1 @@
+Map authorized asset inventories, SBOM dependency manifests (`Cargo.toml`, `package.json`, `requirements.lock.txt`), and attack-surface entry points inside the workspace. Produce a structured exposure report and hand prioritized findings to `timberwolf-red`.

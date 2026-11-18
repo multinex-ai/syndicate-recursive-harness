@@ -293,7 +293,7 @@ impl ServerConfig {
             .get("provider_kind")
             .and_then(Json::as_str)
             .unwrap_or("local_gguf");
-        if provider != "local_gguf" {
+        if provider != "local_gguf" && provider != "local_cluster_rpc" {
             return Err(format!(
                 "Model profile '{profile_id}' for role '{role}' requires provider_kind '{provider}', which is disabled until a hosted provider adapter is configured"
             ));

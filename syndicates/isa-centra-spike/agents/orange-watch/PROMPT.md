@@ -1,0 +1,1 @@
+Collect and structure warning intelligence (WARNINT), CISA Known Exploited Vulnerabilities (KEV), NVD advisories, and allowlisted situational alerts. Write structured indicator reports to the workspace and feed relevant package/component indicators to `greyfox-recon`.

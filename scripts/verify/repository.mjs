@@ -33,6 +33,8 @@ async function inspect(relative) {
   if (text.includes(maintainerPath)) problems.push(`${relative}: contains a maintainer-specific absolute path`);
   const privateProduct = ["prae", "co"].join("");
   if (text.toLowerCase().includes(privateProduct)) problems.push(`${relative}: contains a private downstream product name`);
+  const legacyWord = ["ae", "gis"].join("");
+  if (text.toLowerCase().includes(legacyWord)) problems.push(`${relative}: contains deprecated legacy nomenclature; use ISA / military callsign designations`);
   if (/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/.test(text)) problems.push(`${relative}: contains private-key material`);
   if (extension === ".json") {
     try { JSON.parse(text); } catch (error) { problems.push(`${relative}: invalid JSON (${error.message})`); }

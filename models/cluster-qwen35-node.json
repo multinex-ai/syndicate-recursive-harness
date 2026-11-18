@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "profile_id": "cluster-qwen35-node",
+  "provider_kind": "local_cluster_rpc",
+  "model_ref": "shared/models/qwen35-9b-uncensored/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf",
+  "mmproj_ref": "shared/models/qwen35-9b-uncensored/mmproj-Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-BF16.gguf",
+  "endpoint": "http://127.0.0.1:8089/v1/chat/completions",
+  "cluster_topology": {
+    "command_node": "node-01-toc (keeps planner/conductor resident in VRAM)",
+    "worker_nodes": ["node-02-recon (greyfox-recon / timberwolf-red)", "node-03-media (Wan 2.1 / FLUX.2 MLX)"],
+    "transport": "thunderbolt-bridge-or-lan-loopback"
+  },
+  "context_window": 32768,
+  "compact_at_tokens": 22000,
+  "hard_stop_tokens": 28600,
+  "reserved_output_tokens": 2048,
+  "kv_cache_quant": "q8_0",
+  "requires_heavy_lock": false,
+  "estimated_ram_mb": 7400,
+  "max_output_tokens": 2048
+}
