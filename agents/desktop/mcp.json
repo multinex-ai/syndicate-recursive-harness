@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "agent_id": "desktop",
+  "syndicate_id": "core-local-agents",
+  "mcp_servers": [
+    {
+      "server_id": "local_agent_workers",
+      "enabled": false,
+      "transport": "stdio",
+      "command_or_url": "shared/bin/run-mcp.sh",
+      "args": [],
+      "env_keys": [],
+      "allowed_tools": ["local_agents_status", "start_local_agent", "local_agent_job", "cancel_local_agent", "local_agent_log"],
+      "description": "Local Agent Workers & Syndicate Delegation Bridge"
+    }
+  ]
+}

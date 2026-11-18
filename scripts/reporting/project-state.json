@@ -1,0 +1,22 @@
+{
+  "project": "Syndicate Recursive Harness",
+  "snapshot": "2026-11-15",
+  "status": "LOCAL BUILD-READY · PUBLICATION PENDING APPROVAL",
+  "truth": "MEASURED + CONFIRM",
+  "verification": {
+    "rustTestsPassed": 110,
+    "rustTestsFailed": 0,
+    "rustSeconds": 14.14,
+    "nodeTestsPassed": 12,
+    "nodeTestsFailed": 0,
+    "nodeMilliseconds": 263.0,
+    "maxSourceLines": 700
+  },
+  "openGates": [
+    "A public GitHub tracking issue and exact public copy must be approved before branch, commit, repository creation, or push.",
+    "Hugging Face is signed out; no public model mirror exists yet.",
+    "The extracted Qwen Metal smoke check passes, but routed chat/code/any-to-any and Wan video have not completed clean external-machine qualification.",
+    "The FLUX text encoder is gated and non-commercial; the image route remains disabled until its license and assembly are approved.",
+    "The native macOS installer still needs a release-target decision, code signing, notarization, tamper-resistant update metadata, clean-machine installation, and clean uninstall proof."
+  ]
+}

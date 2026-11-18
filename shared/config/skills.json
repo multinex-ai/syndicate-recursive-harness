@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "skills": [
+    {
+      "name": "context-checkpoint",
+      "description": "Compress a long task into a small, evidence-linked checkpoint before the local context window or handoff budget is exhausted.",
+      "path": ".agents/skills/context-checkpoint/SKILL.md",
+      "sha256": "ff68e451e41644e18c797eeab789e60253457986b64dcdc4a180f8b2faf6fb4d",
+      "capability_note": "Guidance only; does not alter context limits or grant tools."
+    },
+    {
+      "name": "decision-routing",
+      "description": "Choose a bounded local worker or tool from an explicit eligible set while preserving scope, resource, and permission constraints.",
+      "path": ".agents/skills/decision-routing/SKILL.md",
+      "sha256": "ba8da8a01d6f855e1e291e05a126b2b73bdafee82f1767239ebbaa8d160f9731",
+      "capability_note": "Guidance only; routing cannot create permission or availability."
+    },
+    {
+      "name": "harness-evaluation",
+      "description": "Evaluate a local agent route, model adapter, tool boundary, or recovery change with fixed tasks and observable acceptance evidence.",
+      "path": ".agents/skills/harness-evaluation/SKILL.md",
+      "sha256": "a3bde59b4957e169a250cc58bea57e1d10474f65eae16fbfa0890ea1f7ad95c1",
+      "capability_note": "Guidance only; evaluation results depend on executed evidence."
+    },
+    {
+      "name": "memq-operations",
+      "description": "Use an optional configured memory provider for bounded recall and evidence-linked checkpoints after verifying its live identity and project scope.",
+      "path": ".agents/skills/memq-operations/SKILL.md",
+      "sha256": "0f68ad2d604818e808e0d9a2abf987a670bcc1f0e3131f82c506eed217d7256c",
+      "capability_note": "Guidance only; a live verified provider is required for memory access."
+    }
+  ]
+}

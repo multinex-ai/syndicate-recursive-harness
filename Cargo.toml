@@ -1,0 +1,16 @@
+[workspace]
+members = ["installer", "shared/rust-harness"]
+resolver = "2"
+
+[workspace.package]
+edition = "2021"
+license = "Apache-2.0"
+repository = "https://github.com/multinex-ai/syndicate-recursive-harness"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
+panic = "abort"
+

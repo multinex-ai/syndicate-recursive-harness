@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "role": "desktop",
+  "workspace": "agents/desktop/workspace",
+  "max_turns": 16,
+  "timeout_seconds": 600,
+  "vision": true,
+  "model": "HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive",
+  "state": "installed_with_open_acceptance",
+  "launcher": "shared/bin/run-agent.sh",
+  "browser_hosts_default": [],
+  "qualification": {
+    "updated_utc": "2026-11-03T18:42:10.359Z",
+    "checks": [
+      {
+        "name": "desktop",
+        "passed": false,
+        "evidence": "evidence/setup-20261102/desktop-acceptance.json"
+      },
+      {
+        "name": "vision",
+        "passed": true,
+        "evidence": "evidence/setup-20261102/vision-acceptance.json"
+      }
+    ],
+    "scope": "Bounded local fixtures; not general reliability or universal no-refusal evidence"
+  }
+}

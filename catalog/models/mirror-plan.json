@@ -1,0 +1,43 @@
+{
+  "status": "proposed_only",
+  "owner": "multinex-ai",
+  "publication_gate": "Requires authenticated Hugging Face owner session and approval of the exact repository names/model cards.",
+  "repositories": [
+    {
+      "name": "local-syndicate-qwen35-9b",
+      "source": "HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive@0a41c68809d375475f954be12ba7c40efa56c2a9",
+      "license": "apache-2.0",
+      "card": "catalog/models/cards/local-syndicate-qwen35-9b.md"
+    },
+    {
+      "name": "local-syndicate-flux2-klein-4b",
+      "source": "Runpod/FLUX.2-klein-4B-mflux-4bit@7ee1b3aa8178a1240050490072196a57da2bf2a9",
+      "license": "apache-2.0",
+      "card": "catalog/models/cards/local-syndicate-flux2-klein-4b.md"
+    },
+    {
+      "name": "local-syndicate-wan13-checkpoint",
+      "source": "blackshirt/NSFW_Wan_1.3b@6199ecb457af237b143ca9cc2fccec6dcfbe4c22",
+      "license": "creativeml-openrail-m",
+      "card": "catalog/models/cards/local-syndicate-wan13-checkpoint.md"
+    },
+    {
+      "name": "local-syndicate-wan21-base-assets",
+      "source": "Wan-AI/Wan2.1-T2V-1.3B@37ec512624d61f7aa208f7ea8140a131f93afc9a",
+      "license": "apache-2.0",
+      "card": "catalog/models/cards/local-syndicate-wan21-base-assets.md"
+    },
+    {
+      "name": "local-syndicate-umt5-mlx-q8",
+      "source": "PandacatAI/umt5-xxl-enc-mlx-q8@bffbdff244d3a91ac605640c7c72d695147b9901",
+      "license": "apache-2.0",
+      "card": "catalog/models/cards/local-syndicate-umt5-mlx-q8.md"
+    }
+  ],
+  "excluded": [
+    {
+      "source": "ponpoke/flux2-klein-4b-uncensored-text-encoder",
+      "reason": "Gated FLUX Non-Commercial v2.1 artifact. Do not mirror automatically; users must accept the authoritative source terms and explicitly opt in."
+    }
+  ]
+}

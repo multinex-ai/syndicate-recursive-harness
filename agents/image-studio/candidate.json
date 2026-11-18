@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "state": "blocked_unverified_encoder_assembly",
+  "model": "FLUX.2 Klein 4B with ponpoke uncensored encoder",
+  "diffusion_quantization": "Runpod/FLUX.2-klein-4B-mflux-4bit",
+  "diffusion_revision": "7ee1b3aa8178a1240050490072196a57da2bf2a9",
+  "text_encoder": "ponpoke/flux2-klein-4b-uncensored-text-encoder",
+  "encoder_revision": "633217e588e4c0bc76619052e05d3ce0e057cd83",
+  "encoder_license": "flux-non-commercial-v2.1",
+  "native_video_generation": false,
+  "launcher": "shared/bin/run-image.sh",
+  "harness_state": "blocked_in_public_extraction",
+  "qualification": {
+    "updated_utc": "2026-11-12T00:00:00.000Z",
+    "checks": [
+      {
+        "name": "image",
+        "passed": false,
+        "evidence": "No extracted-runtime evidence. Historical source fixture is not a release receipt."
+      }
+    ],
+    "scope": "Image generation stays disabled until license, assembly, runtime, visual, and publication gates pass."
+  },
+  "remaining": [
+    "license decision",
+    "encoder assembly implementation",
+    "fresh runtime smoke test",
+    "visual inspection",
+    "clean install receipt"
+  ],
+  "runtime": "MFLUX / MLX"
+}

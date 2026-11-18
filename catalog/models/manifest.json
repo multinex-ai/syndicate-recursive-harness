@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "snapshot": "2026-11-12",
+  "distribution_policy": {
+    "code_license": "Apache-2.0",
+    "weights_bundled_in_git": false,
+    "download_mode": "pinned revision plus SHA-256 verification",
+    "mirrors": "Proposed only until the authenticated Hugging Face owner approves and creates them. Source repositories remain the authority."
+  },
+  "models": [
+    {
+      "id": "qwen35-9b-q4",
+      "set": "core",
+      "purpose": "local chat, coding, orchestration, and vision reasoning",
+      "source_repo": "HauhauCS/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive",
+      "mirror_repo_proposed": "multinex-ai/local-syndicate-qwen35-9b",
+      "revision": "0a41c68809d375475f954be12ba7c40efa56c2a9",
+      "license": "apache-2.0",
+      "access": "public",
+      "runtime_status": "runnable after verified download",
+      "files": [
+        {
+          "remote": "Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf",
+          "local": "shared/models/qwen35-9b-uncensored/Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-Q4_K_M.gguf",
+          "bytes": 5627044224,
+          "sha256": "2ca636d9e81d3d23ca9b60c234fe185d30ec082eeba69ce770fdb0c76559a4f5"
+        },
+        {
+          "remote": "mmproj-Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-BF16.gguf",
+          "local": "shared/models/qwen35-9b-uncensored/mmproj-Qwen3.5-9B-Uncensored-HauhauCS-Aggressive-BF16.gguf",
+          "bytes": 921704448,
+          "sha256": "05f662501f8bd45607b079723a3e238a4e888fd085a10a53f4057a0e250f6934"
+        }
+      ]
+    },
+    {
+      "id": "flux2-klein-4b-mflux-q4",
+      "set": "creative",
+      "purpose": "Apple Silicon image generation base",
+      "source_repo": "Runpod/FLUX.2-klein-4B-mflux-4bit",
+      "mirror_repo_proposed": "multinex-ai/local-syndicate-flux2-klein-4b",
+      "revision": "7ee1b3aa8178a1240050490072196a57da2bf2a9",
+      "license": "apache-2.0",
+      "access": "public",
+      "runtime_status": "blocked until the base and encoder assembly is licensed and verified end to end",
+      "files": [
+        { "remote": "config.json", "local": "shared/models/image-uncensored/flux2-klein-4b-mflux-q4/config.json", "bytes": 455, "sha256": "2d09aef957ff45cccacf0bd4b9daae0684d1b802232343b387f5aee00b5fe238" },
+        { "remote": "tokenizer/chat_template.jinja", "local": "shared/models/image-uncensored/flux2-klein-4b-mflux-q4/tokenizer/chat_template.jinja", "bytes": 4168, "sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8" },
+        { "remote": "tokenizer/tokenizer.json", "local": "shared/models/image-uncensored/flux2-klein-4b-mflux-q4/tokenizer/tokenizer.json", "bytes": 11422650, "sha256": "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506" },
+        { "remote": "tokenizer/tokenizer_config.json", "local": "shared/models/image-uncensored/flux2-klein-4b-mflux-q4/tokenizer/tokenizer_config.json", "bytes": 348, "sha256": "579073f506a3f85caed232bb91617cfb93028408d1f43ffaf66f3fc1aee9a9af" },
+        { "remote": "transformer/0.safetensors", "local": "shared/models/image-uncensored/flux2-klein-4b-mflux-q4/transformer/0.safetensors", "bytes": 2145323701, "sha256": "b8b21514b059d129cf27ea0650ede92608ae05b8c99ab7239148c69da954f82b" },
+        { "remote": "transformer/1.safetensors", "local": "shared/models/image-uncensored/flux2-klein-4b-mflux-q4/transformer/1.safetensors", "bytes": 34727730, "sha256": "a85ce666eaa791dd7d8082352a61a9f3e24b36e04604bbe3856e7bebd5d61589" },
+        { "remote": "transformer/model.safetensors.index.json", "local": "shared/models/image-uncensored/flux2-klein-4b-mflux-q4/transformer/model.safetensors.index.json", "bytes": 26908, "sha256": "ca07f4f1b921c373d2e6323100c22dd7c7cd3ae9b6ef8fbe9b56e8f1883a9a93" },
+        { "remote": "vae/0.safetensors", "local": "shared/models/image-uncensored/flux2-klein-4b-mflux-q4/vae/0.safetensors", "bytes": 165107912, "sha256": "5053e0f1a87db7b97dc9f43ddba152c0d77858e87ab515fdf2ed9e6ca0374fab" },
+        { "remote": "vae/model.safetensors.index.json", "local": "shared/models/image-uncensored/flux2-klein-4b-mflux-q4/vae/model.safetensors.index.json", "bytes": 17547, "sha256": "404dcd01ec193bef1504a24ec3935bfbbb360c75365e17b241a00f9ec007c86b" }
+      ]
+    },
+    {
+      "id": "flux2-uncensored-text-encoder",
+      "set": "creative",
+      "purpose": "research-only image prompt encoder",
+      "source_repo": "ponpoke/flux2-klein-4b-uncensored-text-encoder",
+      "mirror_repo_proposed": "multinex-ai/local-syndicate-flux2-encoder-research",
+      "revision": "633217e588e4c0bc76619052e05d3ce0e057cd83",
+      "license": "flux-non-commercial-v2.1",
+      "access": "gated; the user must independently accept the source terms",
+      "requires_opt_in": "flux2-encoder",
+      "runtime_status": "research weights only; not part of a runnable default image bundle",
+      "redistribution": "blocked pending license and upstream terms review; do not mirror automatically",
+      "files": [
+        { "remote": "flux2-klein-4b-uncensored-text-encoder/config.json", "local": "shared/models/image-uncensored/source/text_encoder/config.json", "bytes": 1662, "sha256": "fabbe298983e905e68b64645e76712189c07776f6d4124648b09c66fa8f6e9cb" },
+        { "remote": "flux2-klein-4b-uncensored-text-encoder/generation_config.json", "local": "shared/models/image-uncensored/source/text_encoder/generation_config.json", "bytes": 226, "sha256": "0f920802f4244b6cd9a343dbe1a7de2298d5770a98ab0b9e81995c45864bf1b8" },
+        { "remote": "flux2-klein-4b-uncensored-text-encoder/model.safetensors", "local": "shared/models/image-uncensored/source/text_encoder/model.safetensors", "bytes": 8044981680, "sha256": "3d6f27fd39c58c62f593ff5ef48cc734e8abb188005e6a15582876e30833ab96" }
+      ]
+    },
+    {
+      "id": "wan21-local-video",
+      "set": "creative",
+      "purpose": "short local text-to-video clips",
+      "source_repo": "multiple; each file retains its own provenance below",
+      "mirror_repos_proposed": [
+        "multinex-ai/local-syndicate-wan13-checkpoint",
+        "multinex-ai/local-syndicate-wan21-base-assets",
+        "multinex-ai/local-syndicate-umt5-mlx-q8"
+      ],
+      "revision": "pinned per file",
+      "license": "mixed: creativeml-openrail-m and apache-2.0",
+      "access": "public; adult checkpoint is marked Not-For-All-Audiences",
+      "files": [
+        { "repo": "blackshirt/NSFW_Wan_1.3b", "mirror_repo_proposed": "multinex-ai/local-syndicate-wan13-checkpoint", "revision": "6199ecb457af237b143ca9cc2fccec6dcfbe4c22", "license": "creativeml-openrail-m", "remote": "wan_1.3B_exp_e14.safetensors", "local": "shared/models/wan-uncensored/wan_1.3B_exp_e14.safetensors", "bytes": 2838077328, "sha256": "86daed5f43a68d7be2ca1f0e85d2ac51f3ba7fb735c76fd9574323e18fe40c6c" },
+        { "repo": "Wan-AI/Wan2.1-T2V-1.3B", "mirror_repo_proposed": "multinex-ai/local-syndicate-wan21-base-assets", "revision": "37ec512624d61f7aa208f7ea8140a131f93afc9a", "license": "apache-2.0", "remote": "Wan2.1_VAE.pth", "local": "shared/models/wan-uncensored/Wan2.1_VAE.pth", "bytes": 507609880, "sha256": "38071ab59bd94681c686fa51d75a1968f64e470262043be31f7a094e442fd981" },
+        { "repo": "Wan-AI/Wan2.1-T2V-1.3B", "mirror_repo_proposed": "multinex-ai/local-syndicate-wan21-base-assets", "revision": "37ec512624d61f7aa208f7ea8140a131f93afc9a", "license": "apache-2.0", "remote": "google/umt5-xxl/tokenizer.json", "local": "shared/models/wan-uncensored/tokenizer.json", "bytes": 16837417, "sha256": "6e197b4d3dbd71da14b4eb255f4fa91c9c1f2068b20a2de2472967ca3d22602b" },
+        { "repo": "PandacatAI/umt5-xxl-enc-mlx-q8", "mirror_repo_proposed": "multinex-ai/local-syndicate-umt5-mlx-q8", "revision": "bffbdff244d3a91ac605640c7c72d695147b9901", "license": "apache-2.0", "remote": "weights.safetensors", "local": "shared/models/wan-uncensored/t5-q8.safetensors", "bytes": 6036260482, "sha256": "15c85f2f863ee42c2d36fce9c7a15d9d25814e2b4a5d14e809698b55b9deefb4" },
+        { "repo": "PandacatAI/umt5-xxl-enc-mlx-q8", "mirror_repo_proposed": "multinex-ai/local-syndicate-umt5-mlx-q8", "revision": "bffbdff244d3a91ac605640c7c72d695147b9901", "license": "apache-2.0", "remote": "config.json", "local": "shared/models/wan-uncensored/t5-config.json", "bytes": 274, "sha256": "a95d7f5af784784cd044605eabd09799863a5da92fc8c29a9a33c6c953f2356b" }
+      ]
+    }
+  ]
+}
+

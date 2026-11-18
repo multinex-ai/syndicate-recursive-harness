@@ -1,0 +1,10 @@
+{
+  "component": "MLX Wan 2.1 example runtime",
+  "source_repository": "https://github.com/ml-explore/mlx-examples/tree/main/wan",
+  "license": "MIT",
+  "license_file": "shared/vendor/mlx-wan/LICENSE",
+  "source_revision": "796f5b53cab69a3d48a44233ce21aae889e94a08",
+  "source_revision_date": "2026-04-06T11:56:05-07:00",
+  "verification": "A sparse checkout of the upstream video/wan2.1 tree at this revision matched every vendored code and requirements file; upstream-only README/static/input assets and the local license/README were excluded from the content comparison.",
+  "release_status": "provenance_recorded"
+}
