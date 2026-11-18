@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "syndicate_id": "isa-centra-spike-v1",
+  "display_name": "ISA Task Force Orange (CENTRA SPIKE)",
+  "creator_attribution": "Christopher Rijos / Multinex AI",
+  "mission": "Conduct continuous OSINT threat-warning collection, authorized special reconnaissance surface mapping, and isolated red-team vulnerability hardening with verifiable evidence receipts.",
+  "purpose": "Coordinate a compartmented intelligence and defensive cyber detachment where collection, target development, and countermeasure verification execute along strict Rules of Engagement.",
+  "lore": "Modeled on the U.S. Army Intelligence Support Activity (CENTRA SPIKE / Task Force Orange / GREY FOX). CENTRA ACTUAL runs the Tactical Operations Center, ORANGE WATCH monitors warning indicators, GREYFOX RECON maps the target surface, and TIMBERWOLF RED verifies and patches exploitable paths.",
+  "state": "release-candidate",
+  "officiation": { "enabled": true },
+  "coordinator_agent_id": "centra-actual",
+  "agent_ids": ["centra-actual", "orange-watch", "greyfox-recon", "timberwolf-red"],
+  "allowed_tools_ceiling": [
+    "send_message",
+    "list_workers",
+    "receive_messages",
+    "read_file",
+    "write_file",
+    "list_files",
+    "run_command",
+    "browser_open",
+    "browser_observe",
+    "browser_screenshot"
+  ],
+  "allowed_hosts_ceiling": [
+    "localhost",
+    "127.0.0.1",
+    "::1",
+    "www.cisa.gov",
+    "nvd.nist.gov",
+    "www.state.gov",
+    "www.defense.gov",
+    "www.maritime.dot.gov",
+    "reuters.com",
+    "apnews.com"
+  ],
+  "max_dispatch_rounds": 6,
+  "edges": [
+    {
+      "from": "centra-actual",
+      "to": "orange-watch",
+      "relation": "commands",
+      "condition": "mission requires advisory, KEV, or open-source threat-warning intake",
+      "constraints": { "max_rounds": 2 }
+    },
+    {
+      "from": "centra-actual",
+      "to": "greyfox-recon",
+      "relation": "commands",
+      "condition": "mission requires authorized asset inventory, SBOM, or attack-surface mapping",
+      "constraints": { "max_rounds": 2 }
+    },
+    {
+      "from": "centra-actual",
+      "to": "timberwolf-red",
+      "relation": "commands",
+      "condition": "mission requires isolated vulnerability reproduction, code audit, or remediation patch",
+      "constraints": { "max_rounds": 2 }
+    },
+    {
+      "from": "orange-watch",
+      "to": "greyfox-recon",
+      "relation": "feeds",
+      "condition": "collected warning indicators need correlation against local asset inventory",
+      "constraints": { "max_rounds": 1 }
+    },
+    {
+      "from": "greyfox-recon",
+      "to": "timberwolf-red",
+      "relation": "hands_off",
+      "condition": "prioritized exposure graph is ready for isolated red-team verification and patching",
+      "constraints": { "max_rounds": 2 }
+    },
+    {
+      "from": "timberwolf-red",
+      "to": "centra-actual",
+      "relation": "reports_to",
+      "condition": "countermeasure patch and reproduction test receipt are ready for TOC review",
+      "constraints": { "max_rounds": 2 }
+    }
+  ],
+  "loops": [
+    {
+      "name": "recon-exploit-harden",
+      "path": ["centra-actual", "greyfox-recon", "timberwolf-red", "centra-actual"],
+      "max_iterations": 2,
+      "exit_when": "the reproduction test and remediation check pass or the bounded dispatch budget is exhausted"
+    }
+  ]
+}

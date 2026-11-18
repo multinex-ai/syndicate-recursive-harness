@@ -13,7 +13,7 @@
   <img alt="Lock: One Heavy Model" src="https://img.shields.io/badge/VRAM-1%20heavy%20model%20lock-10B981?style=flat-square">
 </p>
 
-> **Release status (local alpha candidate):** The Rust control plane and installer have 110 unit/integration tests passing; the deterministic context compactor, adapter, and model manifest suite has 12 Node tests passing. The SHA-256 weight downloader, no-model source install, bundled `forge` loopback web console, capability-based media routing, model profile resolver, and one authenticated extracted-repository Qwen Metal smoke check are locally verified on Apple Silicon. This repository has not yet been published. Clean external-machine installation, routed chat/code/any-to-any and Wan qualification, a signed/notarized release, and end-to-end FLUX image encoder licensing/assembly remain open gates.
+> **Release status (local alpha candidate):** The Rust control plane and installer have 111 unit/integration tests passing; the deterministic context compactor, adapter, model manifest, and MNX-AGI A/B evaluator suite has 14 Node tests passing. The SHA-256 weight downloader, no-model source install, bundled `forge` loopback web console, capability-based media routing, model profile resolver, Article VI Private LLM Sanctum (`0600`), and one authenticated extracted-repository Qwen Metal smoke check are locally verified on Apple Silicon. Clean external-machine installation, routed chat/code/any-to-any and Wan qualification, a signed/notarized release, and end-to-end FLUX image encoder licensing/assembly remain open gates.
 
 ---
 
@@ -120,12 +120,43 @@ Invoke bounded multi-worker relays, standalone media generation, or live Metal s
 ./target/release/local-agents-rs resources
 ./target/release/local-agents-rs status
 
-# Generate a self-contained HTML run report or launch the loopback Forge web console
+# Generate a self-contained HTML run report, launch the Forge console, or record an Article VI Sanctum reflection
 ./target/release/local-agents-rs report runs/<run_id>
 ./target/release/local-agents-rs forge --port 4287
+./target/release/local-agents-rs sanctum record centra-actual "Prioritize SBOM lockfile audit before red-team dispatch"
 ```
 
 > **Loopback Web Console (`forge`):** `local-agents-rs forge` starts a `127.0.0.1`-only HTTP control plane with a 0600 bearer token (`shared/runtime/forge/token`) and serves `shared/forge-console/` to inspect live memory admission, heavy-model lock state, syndicate rosters, and bounded mission dispatches.
+
+---
+
+## Packaged Syndicates & Multi-Node Cluster Topology
+
+### 1. ISA Task Force Orange — `syndicates/isa-centra-spike/`
+
+Modeled on the U.S. Army Intelligence Support Activity (**CENTRA SPIKE** / **Task Force Orange** / **GREY FOX**), this four-element tactical intelligence and defensive cyber detachment operates under strict host/tool allowlists:
+
+| Callsign (`agent_id`) | Detachment Role | Primary Function & Allowed Surface |
+|---|---|---|
+| **`centra-actual`** | *CENTRA ACTUAL* — TOC Commander & All-Source Fusion Lead | Decomposes directives into collection, recon, and hardening orders; synthesizes after-action sitreps |
+| **`orange-watch`** | *ORANGE WATCH* — SIGINT/OSINT Threat Warning Element | Monitors allowlisted CISA KEV, NVD, diplomatic/maritime feeds, and wire services for WARNINT indicators |
+| **`greyfox-recon`** | *GREYFOX RECON* — Special Reconnaissance & Surface Cartographer | Maps local asset inventories, SBOM dependency trees, and attack-surface exposure graphs |
+| **`timberwolf-red`** | *TIMBERWOLF RED* — Defensive Exploitation & Countermeasure Element | Authors isolated vulnerability reproduction tests, OWASP/CWE audits, and verified remediation patches |
+
+```bash
+./target/release/local-agents-rs agent centra-actual \
+  "Have greyfox-recon map Cargo.toml and requirements.lock.txt in this workspace, then have timberwolf-red verify dependency hygiene and report the receipt" \
+  --dispatch-limit 6 --timeout 1800
+```
+
+### 2. Creative Relay — `syndicates/creative-relay/`
+
+A three-stage code, media, and verification workshop (`conductor` → `code-builder` / `video-studio` → `verifier`) for turning plain-language requests into tested artifacts.
+
+### 3. Single-Mac vs. Multi-Node Cluster Mode (`models/cluster-qwen35-node.json`)
+
+- **Single-Mac Mode (`local-qwen35-9b-uncensored`):** Enforces `requires_heavy_lock: true` so Qwen, Wan 2.1, and FLUX.2 serialize cleanly on a single 16–36 GB unified-memory Mac without OOM pressure.
+- **Multi-Node Cluster Mode (`cluster-qwen35-node`):** When running across a 2–4 Mac Thunderbolt Bridge or LAN cluster (`provider_kind: "local_cluster_rpc"`), Node 1 keeps `centra-actual` / `conductor` permanently warm in VRAM (`32,768` context window, zero cold-load latency) while Node 2 runs `greyfox-recon` / `timberwolf-red` and Node 3 runs Wan 2.1 MLX media jobs in parallel.
 
 ---
 
@@ -212,9 +243,11 @@ syndicate-recursive-harness/
 ├── shared/harness/                 Python/MLX inference & media kernels
 ├── shared/forge-console/           Loopback Syndicate Forge web console UI
 ├── agents/                         Base worker definitions (browser, coordinator, desktop, etc.)
-├── syndicates/creative-relay/      Bounded multi-agent workflow graph
+├── syndicates/creative-relay/      Code, media, and verification relay graph
+├── syndicates/isa-centra-spike/    ISA Task Force Orange (CENTRA SPIKE) recon & audit detachment
 ├── catalog/models/                 SHA-256 pinned weight & CLI manifests
 ├── scripts/models/                 Resumable, hash-verified Hugging Face downloader
+├── scripts/verify/                 Repository contract verifier & MNX-AGI A/B run evaluator
 └── docs/tutorials/                 Step-by-step guides
 ```
 
@@ -222,7 +255,7 @@ Run the local test suites:
 
 ```bash
 cargo test --workspace
-node --test shared/chat/test-context-manager.mjs shared/chat/test-local-responses-adapter.mjs scripts/models/test-models.mjs
+node --test shared/chat/test-context-manager.mjs shared/chat/test-local-responses-adapter.mjs scripts/models/test-models.mjs scripts/verify/test-evaluate-runs.mjs
 ```
 
 See [SECURITY.md](SECURITY.md), [CONTRIBUTING.md](CONTRIBUTING.md), [NOTICE](NOTICE), and [docs/architecture/README.md](docs/architecture/README.md).

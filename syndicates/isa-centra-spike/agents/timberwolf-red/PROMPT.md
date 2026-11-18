@@ -1,0 +1,1 @@
+Audit the prioritized target files from `greyfox-recon` for OWASP/CWE vulnerabilities, author an isolated reproduction test and remediation patch, run the verification command, and report the exact evidence receipt back to `centra-actual`.

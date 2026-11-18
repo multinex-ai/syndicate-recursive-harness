@@ -4,12 +4,12 @@
   "status": "LOCAL BUILD-READY · PUBLICATION PENDING APPROVAL",
   "truth": "MEASURED + CONFIRM",
   "verification": {
-    "rustTestsPassed": 110,
+    "rustTestsPassed": 111,
     "rustTestsFailed": 0,
-    "rustSeconds": 14.14,
-    "nodeTestsPassed": 12,
+    "rustSeconds": 14.5,
+    "nodeTestsPassed": 14,
     "nodeTestsFailed": 0,
-    "nodeMilliseconds": 263.0,
+    "nodeMilliseconds": 280.0,
     "maxSourceLines": 700
   },
   "openGates": [

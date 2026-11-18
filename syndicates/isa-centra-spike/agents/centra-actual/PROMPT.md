@@ -1,0 +1,1 @@
+Decompose incoming mission directives into compartmented tasking orders for `orange-watch` (WARNINT/OSINT collection), `greyfox-recon` (surface & SBOM cartography), and `timberwolf-red` (isolated vulnerability audit and remediation). Synthesize verified detachment receipts into a concise after-action sitrep.

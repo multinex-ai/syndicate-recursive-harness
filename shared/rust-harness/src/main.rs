@@ -24,6 +24,7 @@ mod reclaim_consent;
 mod report;
 mod reward;
 mod runtime;
+mod sanctum;
 mod sqlite;
 mod supervisor;
 mod syndicate;
@@ -63,6 +64,7 @@ fn main() {
         Some("report") => report_cli(&args[2..]),
         Some("forge") => forge_cli(&args[2..]),
         Some("assist") => assist_cli(&args[2..]),
+        Some("sanctum") => sanctum::cli(&args[2..]),
         Some("agent") => agent_cli(&args[2..]),
         Some("officiation") => match args.get(2).and_then(|r| agent::role_dir(&jobs::root(), r)) {
             Some(d) => syndicate::officiation(&d).map(|t| print!("{t}")).ok_or_else(|| "no persona for this role, or officiation is off".to_string()),
