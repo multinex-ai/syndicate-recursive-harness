@@ -1,0 +1,16 @@
+/target/
+/shared/rust-harness/target/
+/shared/runtime/
+/shared/chat/home/
+/shared/models/
+/runs/
+/**/workspace/
+/**/inbox/
+/**/outputs/
+*.log
+*.part
+__pycache__/
+*.pyc
+.DS_Store
+.env
+
