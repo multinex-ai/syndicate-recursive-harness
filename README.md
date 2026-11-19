@@ -13,7 +13,7 @@
   <img alt="Lock: One Heavy Model" src="https://img.shields.io/badge/VRAM-1%20heavy%20model%20lock-10B981?style=flat-square">
 </p>
 
-> **Release status (local alpha candidate):** The Rust control plane and installer have 111 unit/integration tests passing; the deterministic context compactor, adapter, model manifest, and MNX-AGI A/B evaluator suite has 14 Node tests passing. The SHA-256 weight downloader, no-model source install, bundled `forge` loopback web console, capability-based media routing, model profile resolver, Article VI Private LLM Sanctum (`0600`), and one authenticated extracted-repository Qwen Metal smoke check are locally verified on Apple Silicon. Clean external-machine installation, routed chat/code/any-to-any and Wan qualification, a signed/notarized release, and end-to-end FLUX image encoder licensing/assembly remain open gates.
+> **Release status (local alpha candidate):** The Rust control plane and installer have 111 unit/integration tests passing; the deterministic context compactor, adapter, model manifest, MNX-AGI A/B evaluator, and OT/ICS exposure auditor suite has 16 Node tests passing. The SHA-256 weight downloader, no-model source install, bundled `forge` loopback web console, capability-based media routing, model profile resolver, Article VI Private LLM Sanctum (`0600`), hash-pinned `ot-ics-defense` critical infrastructure skill set, and one authenticated extracted-repository Qwen Metal smoke check are locally verified on Apple Silicon. Clean external-machine installation, routed chat/code/any-to-any and Wan qualification, a signed/notarized release, and end-to-end FLUX image encoder licensing/assembly remain open gates.
 
 ---
 
@@ -255,7 +255,7 @@ Run the local test suites:
 
 ```bash
 cargo test --workspace
-node --test shared/chat/test-context-manager.mjs shared/chat/test-local-responses-adapter.mjs scripts/models/test-models.mjs scripts/verify/test-evaluate-runs.mjs
+node --test shared/chat/test-context-manager.mjs shared/chat/test-local-responses-adapter.mjs scripts/models/test-models.mjs scripts/verify/test-evaluate-runs.mjs scripts/verify/test-audit-ot-exposure.mjs
 ```
 
 See [SECURITY.md](SECURITY.md), [CONTRIBUTING.md](CONTRIBUTING.md), [NOTICE](NOTICE), and [docs/architecture/README.md](docs/architecture/README.md).

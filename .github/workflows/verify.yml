@@ -21,8 +21,8 @@ jobs:
           node-version: 22
       - name: Repository contract
         run: node scripts/verify/repository.mjs
-      - name: Context adapter, model manifest, and A/B evaluator tests
-        run: node --test shared/chat/test-context-manager.mjs shared/chat/test-local-responses-adapter.mjs scripts/models/test-models.mjs scripts/verify/test-evaluate-runs.mjs
+      - name: Context adapter, model manifest, A/B evaluator, and OT/ICS auditor tests
+        run: node --test shared/chat/test-context-manager.mjs shared/chat/test-local-responses-adapter.mjs scripts/models/test-models.mjs scripts/verify/test-evaluate-runs.mjs scripts/verify/test-audit-ot-exposure.mjs
       - name: Rust format
         run: cargo fmt --all -- --check
       - name: Rust type and platform checks
