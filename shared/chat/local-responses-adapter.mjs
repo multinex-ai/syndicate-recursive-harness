@@ -15,8 +15,9 @@ export const CORE_TOOLS = new Set([
   // Core MemQ tools
   "query_memory", "search_memory", "add_memory", "recent_memory", "save_context",
   "memory_status", "memq_status", "slicer_slice", "slice_project", "reunion",
-  // Core local agent worker tools
-  "local_agents_status", "start_local_agent", "local_agent_job", "cancel_local_agent", "local_agent_log"
+  // Core local agent worker & security/topology tools
+  "local_agents_status", "start_local_agent", "local_agent_job", "cancel_local_agent", "local_agent_log",
+  "list_skills", "read_skill", "audit_ot_exposure", "nexus_topology"
 ]);
 
 export const INTENT_TOOL_MAP = [
