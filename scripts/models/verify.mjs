@@ -19,26 +19,24 @@ async function sha256(file) {
 
 const models = manifest.models.filter((model) =>
   !model.requires_opt_in && (selected === "all" || model.set === selected));
-const results = [];
-let healthy = true;
-for (const model of models) {
-  for (const expected of model.files) {
+const tasks = models.flatMap((model) =>
+  model.files.map((expected) => async () => {
     const target = path.join(root, expected.local);
-    let result;
     try {
       const metadata = await stat(target);
       const digest = metadata.size === expected.bytes ? await sha256(target) : "not-computed";
       const ok = metadata.size === expected.bytes && digest === expected.sha256;
-      healthy &&= ok;
-      result = { model: model.id, file: expected.local, ok, bytes: metadata.size, sha256: digest };
+      return { model: model.id, file: expected.local, ok, bytes: metadata.size, sha256: digest };
     } catch (error) {
-      healthy = false;
-      result = { model: model.id, file: expected.local, ok: false, error: error.code ?? error.message };
+      return { model: model.id, file: expected.local, ok: false, error: error.code ?? error.message };
     }
-    results.push(result);
-    console.log(`${result.ok ? "✓" : "✗"} ${expected.local}`);
-  }
+  }),
+);
+const results = await Promise.all(tasks.map((run) => run()));
+for (const result of results) {
+  console.log(`${result.ok ? "✓" : "✗"} ${result.file}`);
 }
+const healthy = results.every((result) => result.ok);
 const blocked = models.filter((model) => model.runtime_status?.startsWith("blocked")).map((model) => ({ id: model.id, reason: model.runtime_status }));
 console.log(JSON.stringify({ selected_set: selected, files_verified: results.filter((item) => item.ok).length, files_expected: results.length, integrity_verified: healthy, runtime_blocked: blocked }, null, 2));
 if (!healthy) process.exitCode = 1;

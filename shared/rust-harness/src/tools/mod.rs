@@ -136,6 +136,18 @@ impl Tools {
                 Some(vec!["path", "content"]),
             ),
             spec("list_files", "List workspace files.", json!({}), None),
+            spec(
+                "audit_ot_exposure",
+                "Run deterministic OT/ICS critical infrastructure exposure audit (exposed PLC/HMI/SCADA ports, default PINs, Purdue segmentation) on a workspace path.",
+                json!({"path": s}),
+                None,
+            ),
+            spec(
+                "nexus_topology",
+                "Index workspace supply-chain and attack-surface topology graph (HTTP routes, functions, dependencies, syndicate edges) on a workspace path.",
+                json!({"path": s}),
+                None,
+            ),
         ];
         let mut schemas: Vec<Json> = match &grants {
             Some(g) => ws_specs
@@ -322,6 +334,14 @@ impl Tools {
             "read_file" => self.read_file(&s("path")),
             "write_file" => self.write_file(&s("path"), &s("content")),
             "list_files" => Ok(self.list_files()),
+            "audit_ot_exposure" => self.run_verify_script(
+                "scripts/verify/audit-ot-exposure.mjs",
+                a.get("path").and_then(Json::as_str).unwrap_or("."),
+            ),
+            "nexus_topology" => self.run_verify_script(
+                "scripts/verify/nexus-graph.mjs",
+                a.get("path").and_then(Json::as_str).unwrap_or("."),
+            ),
             "run_command" => self.run_command(
                 &a["argv"]
                     .as_array()
