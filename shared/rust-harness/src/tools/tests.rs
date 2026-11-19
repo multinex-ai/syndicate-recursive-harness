@@ -675,4 +675,13 @@ fn every_installed_skill_and_reference_is_readable() {
             json!(false)
         );
     }
+    let ot = t.execute("audit_ot_exposure", &json!({"path": "."}));
+    assert_eq!(ot["ok"], json!(true), "{ot}");
+    assert_eq!(ot["result"]["passed"], json!(true));
+    let nx = t.execute("nexus_topology", &json!({"path": "."}));
+    assert_eq!(nx["ok"], json!(true), "{nx}");
+    assert_eq!(
+        t.execute("audit_ot_exposure", &json!({"path": "../outside"}))["ok"],
+        json!(false)
+    );
 }

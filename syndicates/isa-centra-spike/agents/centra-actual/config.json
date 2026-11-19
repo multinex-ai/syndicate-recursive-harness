@@ -8,7 +8,7 @@
   "timeout_seconds": 600,
   "vision": false,
   "allowed_hosts": ["localhost", "127.0.0.1", "::1"],
-  "allowed_tools": ["send_message", "list_workers", "receive_messages", "read_file", "write_file", "list_files"],
+  "allowed_tools": ["send_message", "list_workers", "receive_messages", "read_file", "write_file", "list_files", "audit_ot_exposure", "nexus_topology"],
   "workspace_rel_path": "syndicates/isa-centra-spike/agents/centra-actual/workspace",
   "persona": {
     "name": "Centra Actual",

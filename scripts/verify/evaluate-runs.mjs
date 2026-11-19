@@ -5,6 +5,7 @@
  */
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
+import { pathToFileURL } from "node:url";
 
 export function canonicalJson(value, depth = 0) {
   if (depth > 32) throw new Error("json_depth_exceeded");
@@ -91,7 +92,7 @@ export function evaluateRuns(input) {
   };
 }
 
-if (import.meta.url === `file://${process.argv[1]}` && process.argv[2]) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href && process.argv[2]) {
   const payload = JSON.parse(await readFile(process.argv[2], "utf8"));
   console.log(JSON.stringify(evaluateRuns(payload), null, 2));
 }

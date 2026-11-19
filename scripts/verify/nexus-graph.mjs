@@ -11,6 +11,7 @@
  */
 import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 import { contentDigest } from "./evaluate-runs.mjs";
 
 export function createGraph() {
@@ -172,7 +173,7 @@ export async function buildWorkspaceGraph(rootDir) {
   };
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const summary = await buildWorkspaceGraph(process.argv[2] ?? ".");
   console.log(JSON.stringify({ schema_version: summary.schema_version, digest: summary.digest, counts: summary.counts }, null, 2));
 }

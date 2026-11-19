@@ -8,7 +8,7 @@
   "timeout_seconds": 600,
   "vision": false,
   "allowed_hosts": ["localhost", "127.0.0.1", "::1"],
-  "allowed_tools": ["read_file", "write_file", "list_files", "run_command", "send_message", "receive_messages"],
+  "allowed_tools": ["read_file", "write_file", "list_files", "audit_ot_exposure", "nexus_topology", "run_command", "send_message", "receive_messages"],
   "workspace_rel_path": "syndicates/isa-centra-spike/agents/greyfox-recon/workspace",
   "persona": {
     "name": "Timberwolf Red",

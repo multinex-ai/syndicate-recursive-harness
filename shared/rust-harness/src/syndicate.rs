@@ -167,7 +167,7 @@ pub fn guide() -> Json {
 
 // ---------------------------------------------------------------- tools
 /// (name, category, note). Categories: core (always on), workspace, exec, browser, desktop.
-const TOOLS: [(&str, &str); 22] = [
+const TOOLS: [(&str, &str); 24] = [
     ("send_message", "core"),
     ("list_workers", "core"),
     ("receive_messages", "core"),
@@ -179,6 +179,8 @@ const TOOLS: [(&str, &str); 22] = [
     ("read_file", "workspace"),
     ("write_file", "workspace"),
     ("list_files", "workspace"),
+    ("audit_ot_exposure", "workspace"),
+    ("nexus_topology", "workspace"),
     ("run_command", "exec"),
     ("browser_open", "browser"),
     ("browser_observe", "browser"),

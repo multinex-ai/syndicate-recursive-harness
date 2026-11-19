@@ -50,13 +50,18 @@ async function download(model, file) {
   const revision = file.revision ?? model.revision;
   const target = path.join(root, file.local);
   const sizeLabel = formatBytes(file.bytes);
+  if (dryRun) {
+    const present = await stat(target).then((m) => m.size === file.bytes).catch(() => false);
+    console.log(
+      present
+        ? `✓ [dry-run] ${file.local} (${sizeLabel}) present on disk`
+        : `• [dry-run] would download ${repo}@${revision}:${file.remote} -> ${file.local} (${sizeLabel})`,
+    );
+    return { ...file, repo, revision, status: present ? "dry_run_present" : "dry_run_pending" };
+  }
   if (await valid(target, file.bytes, file.sha256)) {
     console.log(`✓ ${file.local} (${sizeLabel}) already verified`);
     return { ...file, repo, revision, status: "already_verified" };
-  }
-  if (dryRun) {
-    console.log(`• [dry-run] would download ${repo}@${revision}:${file.remote} -> ${file.local} (${sizeLabel})`);
-    return { ...file, repo, revision, status: "dry_run_pending" };
   }
   await mkdir(path.dirname(target), { recursive: true });
   const partial = `${target}.part`;

@@ -28,6 +28,30 @@ impl Tools {
         )
     }
 
+    fn run_verify_script(&self, script_rel: &str, rel_path: &str) -> R<Json> {
+        let target = if rel_path.trim().is_empty() || rel_path.trim() == "." {
+            self.workspace.clone()
+        } else {
+            self.path(rel_path)?
+        };
+        let script = crate::jobs::root().join(script_rel);
+        let out = std::process::Command::new("node")
+            .arg(&script)
+            .arg(&target)
+            .output()
+            .map_err(|e| ToolError(format!("OSError: {e}")))?;
+        let text = String::from_utf8_lossy(&out.stdout);
+        serde_json::from_str::<Json>(text.trim()).or_else(|_| {
+            err(
+                "RuntimeError",
+                format!(
+                    "{script_rel} failed: {}",
+                    String::from_utf8_lossy(&out.stderr).trim()
+                ),
+            )
+        })
+    }
+
     fn list_files(&self) -> Json {
         let mut out = vec![];
         let mut stack = vec![self.workspace.clone()];

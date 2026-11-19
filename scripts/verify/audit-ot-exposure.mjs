@@ -8,6 +8,7 @@
  */
 import { readdir, readFile, stat } from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 
 export const PROTECTED_OT_PORTS = Object.freeze({
   102: "Siemens S7comm / IEC 61850 MMS",
@@ -134,7 +135,7 @@ export async function auditPath(targetPath) {
   };
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const target = process.argv[2] ?? ".";
   const report = await auditPath(target);
   console.log(JSON.stringify(report, null, 2));
