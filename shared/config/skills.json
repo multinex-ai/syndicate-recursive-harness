@@ -28,6 +28,13 @@
       "path": ".agents/skills/memq-operations/SKILL.md",
       "sha256": "0f68ad2d604818e808e0d9a2abf987a670bcc1f0e3131f82c506eed217d7256c",
       "capability_note": "Guidance only; a live verified provider is required for memory access."
+    },
+    {
+      "name": "ot-ics-defense",
+      "description": "Monitor, evaluate, respond to, and prevent cyber attacks on Operational Technology (OT), Industrial Control Systems (ICS), PLCs, RTUs, and SCADA/HMI infrastructure.",
+      "path": ".agents/skills/ot-ics-defense/SKILL.md",
+      "sha256": "0dc62b2b95c071c96b7c0be84e3cbc5912a6e7db633d016cf22c15130e079333",
+      "capability_note": "Guidance only; combines with scripts/verify/audit-ot-exposure.mjs for deterministic config audits."
     }
   ]
 }

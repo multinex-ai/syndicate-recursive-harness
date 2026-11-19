@@ -7,7 +7,7 @@
     "rustTestsPassed": 111,
     "rustTestsFailed": 0,
     "rustSeconds": 14.5,
-    "nodeTestsPassed": 14,
+    "nodeTestsPassed": 16,
     "nodeTestsFailed": 0,
     "nodeMilliseconds": 280.0,
     "maxSourceLines": 700
