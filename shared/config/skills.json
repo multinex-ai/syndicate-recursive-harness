@@ -33,8 +33,22 @@
       "name": "ot-ics-defense",
       "description": "Monitor, evaluate, respond to, and prevent cyber attacks on Operational Technology (OT), Industrial Control Systems (ICS), PLCs, RTUs, and SCADA/HMI infrastructure.",
       "path": ".agents/skills/ot-ics-defense/SKILL.md",
-      "sha256": "0dc62b2b95c071c96b7c0be84e3cbc5912a6e7db633d016cf22c15130e079333",
-      "capability_note": "Guidance only; combines with scripts/verify/audit-ot-exposure.mjs for deterministic config audits."
+      "sha256": "b6bcbc82844de1a66c6f253b49db1c8ecb6a0dd5954edcdd91f2f1c5a528fdcd",
+      "capability_note": "Guidance only; combines with native audit_ot_exposure tool for deterministic config audits."
+    },
+    {
+      "name": "nexus-topology-recon",
+      "description": "Map codebase routes, functions, dependencies, and syndicate routing graphs with the native nexus_topology tool for zero-day reachability triage, surgical context slicing, and blast-radius prediction.",
+      "path": ".agents/skills/nexus-topology-recon/SKILL.md",
+      "sha256": "4925286729713a5d36f6b1d0692cd547828a763ea45c2506313b6031aac02a87",
+      "capability_note": "Guidance only; combines with native nexus_topology tool for deterministic supply-chain and surface graph queries."
+    },
+    {
+      "name": "whitehat-repro-patch",
+      "description": "Verify and remediate vulnerabilities using deterministic Fail-Before-Fix reproduction harnesses, parser/auth/setpoint boundary tests, and 5-Gate completion receipts.",
+      "path": ".agents/skills/whitehat-repro-patch/SKILL.md",
+      "sha256": "35d5904dc5ea298de1ec915dd679773e9ac130aa2c50ff41f50aaf86ea7fbee5",
+      "capability_note": "Guidance only; requires executable Fail-Before-Fix and Pass-After-Fix test evidence."
     }
   ]
 }
