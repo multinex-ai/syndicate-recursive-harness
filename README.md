@@ -13,7 +13,7 @@
   <img alt="Lock: One Heavy Model" src="https://img.shields.io/badge/VRAM-1%20heavy%20model%20lock-10B981?style=flat-square">
 </p>
 
-> **Release status (local alpha candidate):** The Rust control plane and installer have 111 unit/integration tests passing; the deterministic context compactor, adapter, model manifest, MNX-AGI A/B evaluator, OT/ICS exposure auditor, and Nexus topology graph suite has 18 Node tests passing. The SHA-256 weight downloader, no-model source install, bundled `forge` loopback web console, capability-based media routing, model profile resolver, Article VI Private LLM Sanctum (`0600`), hash-pinned `ot-ics-defense` critical infrastructure skill set, and one authenticated extracted-repository Qwen Metal smoke check are locally verified on Apple Silicon. Clean external-machine installation, routed chat/code/any-to-any and Wan qualification, a signed/notarized release, and end-to-end FLUX image encoder licensing/assembly remain open gates.
+> **Release status (`v0.1.0`):** The Rust control plane and installer have 111 unit/integration tests passing; the deterministic context compactor, adapter, model manifest, MNX-AGI A/B evaluator, OT/ICS exposure auditor, and Nexus topology graph suite has 18 Node tests passing. Shipped out of the box with 12 SHA-256 hash-pinned operational skills (`shared/config/skills.json`), 2 native deterministic security/topology scanners (`audit_ot_exposure` and `nexus_topology`), 2 packaged syndicates (`isa-centra-spike` and `creative-relay`), 7 base specialist workers, the bundled `forge` loopback web console, capability-based media routing, model profile resolver (`single-Mac` and `cluster-qwen35-node`), and Article VI Private LLM Sanctum (`0600`). Clean external-machine installation, routed chat/code/any-to-any and Wan qualification, a signed/notarized release, and end-to-end FLUX image encoder licensing/assembly remain open gates.
 
 ---
 
@@ -157,6 +157,25 @@ A three-stage code, media, and verification workshop (`conductor` → `code-buil
 
 - **Single-Mac Mode (`local-qwen35-9b-uncensored`):** Enforces `requires_heavy_lock: true` so Qwen, Wan 2.1, and FLUX.2 serialize cleanly on a single 16–36 GB unified-memory Mac without OOM pressure.
 - **Multi-Node Cluster Mode (`cluster-qwen35-node`):** When running across a 2–4 Mac Thunderbolt Bridge or LAN cluster (`provider_kind: "local_cluster_rpc"`), Node 1 keeps `centra-actual` / `conductor` permanently warm in VRAM (`32,768` context window, zero cold-load latency) while Node 2 runs `greyfox-recon` / `timberwolf-red` and Node 3 runs Wan 2.1 MLX media jobs in parallel.
+
+### 4. Twelve SHA-256 Hash-Pinned Operational Skills (`shared/config/skills.json`)
+
+Every local model and syndicate worker can inspect and load 12 cryptographically hash-pinned skills on demand via `list_skills` and `read_skill` (verified at runtime against `shared/config/skills.json` before injection):
+
+| Skill (`name`) | Domain | Paired Native Tool / Capability |
+|---|---|---|
+| `context-checkpoint` | Context Compaction | Structured `10,800`-token evidence checkpointing |
+| `decision-routing` | Bounded Delegation | Cost-aware tool vs. worker selection within route ceilings |
+| `harness-evaluation` | Paired A/B Testing | `scripts/verify/evaluate-runs.mjs` regression & latency gates |
+| `memq-operations` | Realm Memory | Authenticated scope & namespace handshake before recall/write |
+| `ot-ics-defense` | Critical Infrastructure | `audit_ot_exposure` deterministic PLC/SCADA protocol & Compose scanner |
+| `nexus-topology-recon` | Code & Route Graph | `nexus_topology` (`summary`, `surface`, `query`, `impact`) indexer |
+| `whitehat-repro-patch` | Exploit Verification | Fail-Before-Fix / Pass-After-Fix test harness & 5-Gate receipt |
+| `warnint-osint-triage` | Threat Intelligence | Zero-trust CISA KEV / NVD extraction & prompt-injection quarantine |
+| `sbom-supply-chain-audit` | Supply-Chain Security | Lockfile (`Cargo.lock`, `requirements.lock.txt`), weight SHA, & CI workflow audit |
+| `cluster-enclave-isolation` | Container & Mesh Hardening | Docker `cap_drop: ["ALL"]`, `read_only`, and unidirectional `100.64.x.x` tunnel ACLs |
+| `visual-gui-grounding` | macOS GUI & Media QA | 4-step `normalized_1000` UI loop & `finite_pixels` Wan/FLUX tensor telemetry |
+| `incident-sitrep-sanctum` | TOC Sitrep & Article VI | 5-Gate After-Action Sitrep + `0600` owner-only `local-agents-rs sanctum` reflection |
 
 ---
 

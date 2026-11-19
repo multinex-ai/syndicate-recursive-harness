@@ -49,6 +49,41 @@
       "path": ".agents/skills/whitehat-repro-patch/SKILL.md",
       "sha256": "35d5904dc5ea298de1ec915dd679773e9ac130aa2c50ff41f50aaf86ea7fbee5",
       "capability_note": "Guidance only; requires executable Fail-Before-Fix and Pass-After-Fix test evidence."
+    },
+    {
+      "name": "warnint-osint-triage",
+      "description": "Ingest live CISA KEV, NVD, and vendor threat advisories into structured WARNINT indicator records while isolating untrusted external prose from agent control planes.",
+      "path": ".agents/skills/warnint-osint-triage/SKILL.md",
+      "sha256": "c544755c51b4b3fa5834aa25f9bd29ce6069fd9c68d049d161970243f3ec5d67",
+      "capability_note": "Guidance only; enforces untrusted-prose quarantine and structured CVE/KEV extraction."
+    },
+    {
+      "name": "sbom-supply-chain-audit",
+      "description": "Audit lockfiles, commit pins, container base images, and CI/CD workflow permissions to prevent dependency confusion, unpinned weight drift, and supply-chain injection.",
+      "path": ".agents/skills/sbom-supply-chain-audit/SKILL.md",
+      "sha256": "3891811d69e1f70546596685ac0bd47a8507159a4b24f5d659905362754e4503",
+      "capability_note": "Guidance only; audits Cargo.lock, package-lock.json, requirements.lock.txt, and GitHub Actions workflows."
+    },
+    {
+      "name": "cluster-enclave-isolation",
+      "description": "Enforce zero-trust Docker enclave sandboxing, capability dropping, and unidirectional userspace tunnel ACLs across local Apple Silicon and remote GPU cluster nodes.",
+      "path": ".agents/skills/cluster-enclave-isolation/SKILL.md",
+      "sha256": "ea048e079da517389bb867d196d76ab4ed5ecbac34bce8fbc6e91f0eb7681568",
+      "capability_note": "Guidance only; governs container capability dropping and unidirectional cluster RPC boundaries."
+    },
+    {
+      "name": "visual-gui-grounding",
+      "description": "Execute deterministic 4-step macOS native GUI interactions in normalized_1000 coordinates and verify Wan 2.2 / FLUX.2 media generation telemetry receipts.",
+      "path": ".agents/skills/visual-gui-grounding/SKILL.md",
+      "sha256": "5da6911501b41fefec6977c7e462b040ebe023ea0eb2ff077f7f912b32d9d036",
+      "capability_note": "Guidance only; enforces desktop_observe -> focus -> screenshot -> click loop and finite_pixels media verification."
+    },
+    {
+      "name": "incident-sitrep-sanctum",
+      "description": "Synthesize evidence-linked TOC After-Action Sitreps across the 5 verification gates and record end-of-mission Article VI Private LLM Sanctum reflections.",
+      "path": ".agents/skills/incident-sitrep-sanctum/SKILL.md",
+      "sha256": "957eedcd4365f4feba636e17916058f1534dc776df212fd32f7b9a9b8270641f",
+      "capability_note": "Guidance only; combines 5-Gate sitrep reporting with owner-only 0600 Article VI Sanctum reflections."
     }
   ]
 }
