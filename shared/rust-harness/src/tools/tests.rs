@@ -652,7 +652,7 @@ fn every_installed_skill_and_reference_is_readable() {
         .as_array()
         .cloned()
         .unwrap();
-    assert_eq!(skills.len(), 7);
+    assert_eq!(skills.len(), 12);
     for s in skills {
         let r = t.execute("read_skill", &json!({"name": s["name"]}));
         assert_eq!(r["ok"], json!(true), "{r}");
